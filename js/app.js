@@ -1,13 +1,21 @@
+/**
+* Get game board to appear  - done!
+* Get bug to appear
+* Get bug to move
+* Get player to appear
+* Get player to move
+*/
+
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    //this.locX = locX;
-    //this.locY = locY;
+    this.x = x;
+    this.y = y;
 };
 
 // Update the enemy's position, required method for game
@@ -29,7 +37,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 /*var Player = function(locX, locY) {
-  this.sprite = 'images/char-pink-girl.png';
+  this.sprite = 'images/char-princess-girl.png';
   this.locX = locX;
   this.locY = locY;
 };
@@ -67,16 +75,16 @@ Player.prototype.handleInput = function(kcode) {
 };*/
 
 // Now instantiate your objects.
-var spider = new Enemy(250, 400);
-var fly = new Enemy(-250, 75);
-var roach = new Enemy(-350, 150);
-var ant = new Enemy(-450, 125);
-var waterbug = new Enemy(-450, 50);
+var mike = new Enemy(0, 50);
+var alvin = new Enemy(250, 80);
+var rhonda = new Enemy(150, 150);
+var pat = new Enemy(350, 175);
+var charlie = new Enemy(25, 225);
 //var jasmine = new Player(400, 300);
 
 
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [spider, fly, roach, ant, waterbug];
+var allEnemies = [mike, alvin, rhonda, pat, charlie];
 
 // Place the player object in a variable called player
 //var player = jasmine;
