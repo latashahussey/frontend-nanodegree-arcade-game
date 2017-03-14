@@ -47,18 +47,18 @@ var Player = function(x, y) {
 };
 
 
-/*Player.prototype.update = function(dt) {
+/* Player.prototype.update = function(dt) {
 
 
   // Prevent player from moving out of bounds
-  if(player.locX <0){
-    player.locX = 0;
-  } else if (player.locX > 505) {
-    player.locX = 455;
-  } else if (player.locY < 0) {
-    player.locY = 0;
-  } else if (player.locX > 606) {
-    player.locY = 556;
+ if(player.x < 0){
+    player.x = 0;
+  } else if (player.x > 505) {
+    player.x = 455;
+  } else if (player.y < 0) {
+    player.y = 0;
+  } else if (player.y > 606) {
+    player.y = 556;
   }
 };*/
 
@@ -67,17 +67,17 @@ Player.prototype.render = function() {
 };
 
 // Move player position based on key selected
-/*Player.prototype.handleInput = function(kcode) {
+Player.prototype.handleInput = function(kcode) {
   if (kcode == 'left') {
-       this.x = this.x - 40;
+       this.x = this.x - 85;
     } else if (kcode == 'up') {
-        this.y = this.y - 40;
+        this.y = this.y - 85;
     } else if (kcode == 'right') {
-        this.x = this.x + 40;
+        this.x = this.x + 85;
     } else if (kcode == 'down') {
-        this.y = this.y + 40;
+        this.y = this.y + 85;
    }
-};*/
+};
 
 // Now instantiate your objects.
 var mike = new Enemy(-150, 50);
