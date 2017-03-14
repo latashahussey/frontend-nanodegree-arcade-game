@@ -1,7 +1,7 @@
 /**
 * Get game board to appear  - done!
-* Get bug to appear
-* Get bug to move
+* Get bug to appear - done!
+* Get bug to move - done!
 * Get player to appear
 * Get player to move
 */
@@ -37,13 +37,17 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-/*var Player = function(locX, locY) {
-  this.sprite = 'images/char-princess-girl.png';
-  this.locX = locX;
-  this.locY = locY;
+var Player = function(x, y) {
+    // Variables applied to each of our instances go here
+    // The image/sprite for our player, this uses
+    // a helper we've provided to easily load images
+    this.sprite = 'images/char-princess-girl.png';
+    this.x = x;
+    this.y = y;
 };
 
-Player.prototype.update = function(dt) {
+
+/*Player.prototype.update = function(dt) {
 
 
   // Prevent player from moving out of bounds
@@ -56,14 +60,14 @@ Player.prototype.update = function(dt) {
   } else if (player.locX > 606) {
     player.locY = 556;
   }
-};
+};*/
 
 Player.prototype.render = function() {
    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Move player position based on key selected
-Player.prototype.handleInput = function(kcode) {
+/*Player.prototype.handleInput = function(kcode) {
   if (kcode == 'left') {
        this.x = this.x - 40;
     } else if (kcode == 'up') {
@@ -91,7 +95,6 @@ var jen = new Enemy(-1750, 225);
 var carl = new Enemy(-2900, 75);
 var cody = new Enemy(-200, 155);
 var george = new Enemy(-650, 220);
-//var jasmine = new Player(400, 300);
 
 
 // Place all enemy objects in an array called allEnemies
@@ -99,7 +102,7 @@ var allEnemies = [mike, alvin, rhonda, pat, charlie, sam,
   richard, freddy, april, julie, amy, jen, carl, cody, george];
 
 // Place the player object in a variable called player
-//var player = jasmine;
+var player = new Player(200, 400);
 
 
 // This listens for key presses and sends the keys to your
