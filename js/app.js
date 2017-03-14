@@ -24,7 +24,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += Math.floor(Math.random() * 275) / 2 * dt; // Move enemy up to 175  pixels per dt
+    this.x += Math.floor(Math.random() * 105) * dt; // Move enemy
 
 
 };
@@ -76,16 +76,27 @@ Player.prototype.handleInput = function(kcode) {
 };*/
 
 // Now instantiate your objects.
-var mike = new Enemy(-75, 50);
-var alvin = new Enemy(-350, 80);
-var rhonda = new Enemy(-150, 150);
-var pat = new Enemy(-550, 175);
-var charlie = new Enemy(-25, 225);
+var mike = new Enemy(-150, 50);
+var alvin = new Enemy(-450, 100);
+var rhonda = new Enemy(-800, 150);
+var pat = new Enemy(-1025, 200);
+var charlie = new Enemy(-1825, 75);
+var sam = new Enemy(-2025, 125);
+var richard = new Enemy(-3000, 100);
+var freddy = new Enemy(-1425, 50);
+var april = new Enemy(-1625, 210);
+var julie = new Enemy(-3050, 200);
+var amy = new Enemy(-1250, 175);
+var jen = new Enemy(-1750, 225);
+var carl = new Enemy(-2900, 75);
+var cody = new Enemy(-200, 155);
+var george = new Enemy(-650, 220);
 //var jasmine = new Player(400, 300);
 
 
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [mike, alvin, rhonda, pat, charlie];
+var allEnemies = [mike, alvin, rhonda, pat, charlie, sam,
+  richard, freddy, april, julie, amy, jen, carl, cody, george];
 
 // Place the player object in a variable called player
 //var player = jasmine;
