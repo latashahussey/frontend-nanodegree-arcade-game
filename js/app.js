@@ -26,13 +26,13 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += Math.floor(Math.random() * 105) * dt; // Move enemy
 
-
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -47,35 +47,40 @@ var Player = function(x, y) {
 };
 
 
-/* Player.prototype.update = function(dt) {
+Player.prototype.update = function(dt) {
 
 
-  // Prevent player from moving out of bounds
- if(player.x < 0){
-    player.x = 0;
-  } else if (player.x > 505) {
-    player.x = 455;
-  } else if (player.y < 0) {
-    player.y = 0;
-  } else if (player.y > 606) {
-    player.y = 556;
-  }
-};*/
+
+
+};
 
 Player.prototype.render = function() {
    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Move player position based on key selected
+// and prevent player from moving out of bounds
 Player.prototype.handleInput = function(kcode) {
   if (kcode == 'left') {
-       this.x = this.x - 85;
+        this.x = this.x - 85;
+        if(this.x < 30) {
+          this.x = 200;
+        }
     } else if (kcode == 'up') {
         this.y = this.y - 85;
+        if(this.y < 30) {
+          this.y = 400;
+        }
     } else if (kcode == 'right') {
         this.x = this.x + 85;
+        if(this.x > 400) {
+          this.x = 200;
+        }
     } else if (kcode == 'down') {
         this.y = this.y + 85;
+        if(this.y > 400) {
+          this.y = 400;
+        }
    }
 };
 
