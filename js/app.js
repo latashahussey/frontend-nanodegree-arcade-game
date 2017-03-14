@@ -24,7 +24,8 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-  //  this.speed += 75 * dt; // Move enemy 75  pixels per second
+    this.x += Math.floor(Math.random() * 275) / 2 * dt; // Move enemy up to 175  pixels per dt
+
 
 };
 
@@ -75,11 +76,11 @@ Player.prototype.handleInput = function(kcode) {
 };*/
 
 // Now instantiate your objects.
-var mike = new Enemy(0, 50);
-var alvin = new Enemy(250, 80);
-var rhonda = new Enemy(150, 150);
-var pat = new Enemy(350, 175);
-var charlie = new Enemy(25, 225);
+var mike = new Enemy(-75, 50);
+var alvin = new Enemy(-350, 80);
+var rhonda = new Enemy(-150, 150);
+var pat = new Enemy(-550, 175);
+var charlie = new Enemy(-25, 225);
 //var jasmine = new Player(400, 300);
 
 
