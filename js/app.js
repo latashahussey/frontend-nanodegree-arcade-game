@@ -5,7 +5,7 @@
  * Get player to appear - done!
  * Get player to move - done!
  * Prevent player from moving out of bounds - done!
- * Reset enemies to simulate continuous stream of bugs
+ * Reset enemies to simulate continuous stream of bugs - done!
  * Reset player position when colliding with bugs
  * Add game title and instructions to screen.
  * Add 'You won' / 'You Lose' confirmation
@@ -52,11 +52,23 @@ var Player = function(x, y) {
   this.y = y;
 };
 
-
+// Prevent user from moving out of bounds
+// or Reset player position after win/loss
 Player.prototype.update = function(gameStatus) {
 
-
-
+  if (this.x < 30) { // player is too far left
+    this.x = 200;
+    this.y = 400;
+  } else if (this.y < 60) { // player won
+    this.x = 200;
+    this.y = 400;
+  } else if (this.x > 400) { // player is too far right
+    this.x = 200;
+    this.y = 400;
+  } else if (this.y > 400) { // player is too far down
+    this.x = 200;
+    this.y = 400;
+  }
 
 };
 
@@ -71,28 +83,12 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(kcode) {
   if (kcode == 'left') {
     this.x = this.x - 85;
-    if (this.x < 30) {
-      this.x = 200;
-      this.y = 400;
-    }
   } else if (kcode == 'up') {
     this.y = this.y - 85;
-    if (this.y < 60) {
-      this.x = 200;
-      this.y = 400;
-    }
   } else if (kcode == 'right') {
     this.x = this.x + 85;
-    if (this.x > 400) {
-      this.x = 200;
-      this.y = 400;
-    }
   } else if (kcode == 'down') {
     this.y = this.y + 85;
-    if (this.y > 400) {
-      this.x = 200;
-      this.y = 400;
-    }
   }
 };
 
