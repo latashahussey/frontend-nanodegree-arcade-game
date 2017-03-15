@@ -26,7 +26,13 @@ var Enemy = function(x, y) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-  this.x += Math.floor(Math.random() * 105) * dt; // Move enemy
+  this.x += Math.floor(Math.random() * 215) * dt; // Move enemy
+
+  // Reset enemy position and speed when it reaches end of canvas
+  if (this.x > 505) {
+    this.x = (Math.floor(Math.random() * 3000)) * -1;
+    this.x += Math.floor(Math.random() * 235) * dt;
+  }
 
 };
 
@@ -47,7 +53,7 @@ var Player = function(x, y) {
 };
 
 
-Player.prototype.update = function(dt) {
+Player.prototype.update = function(gameStatus) {
 
 
 
@@ -67,24 +73,30 @@ Player.prototype.handleInput = function(kcode) {
     this.x = this.x - 85;
     if (this.x < 30) {
       this.x = 200;
+      this.y = 400;
     }
   } else if (kcode == 'up') {
     this.y = this.y - 85;
-    if (this.y < 30) {
+    if (this.y < 60) {
+      this.x = 200;
       this.y = 400;
     }
   } else if (kcode == 'right') {
     this.x = this.x + 85;
     if (this.x > 400) {
       this.x = 200;
+      this.y = 400;
     }
   } else if (kcode == 'down') {
     this.y = this.y + 85;
     if (this.y > 400) {
+      this.x = 200;
       this.y = 400;
     }
   }
 };
+
+
 
 // Instantiate enemy objects
 var mike = new Enemy(-150, 50);
@@ -93,13 +105,13 @@ var rhonda = new Enemy(-800, 150);
 var pat = new Enemy(-1025, 200);
 var charlie = new Enemy(-1825, 75);
 var sam = new Enemy(-2025, 125);
-var richard = new Enemy(-3000, 100);
+var richard = new Enemy(-1950, 100);
 var freddy = new Enemy(-1425, 50);
 var april = new Enemy(-1625, 210);
-var julie = new Enemy(-3050, 200);
+var julie = new Enemy(-50, 200);
 var amy = new Enemy(-1250, 175);
 var jen = new Enemy(-1750, 225);
-var carl = new Enemy(-2900, 75);
+var carl = new Enemy(-2200, 75);
 var cody = new Enemy(-200, 155);
 var george = new Enemy(-650, 220);
 
