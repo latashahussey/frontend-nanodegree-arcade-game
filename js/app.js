@@ -1,49 +1,49 @@
 /**
-* Get game board to appear  - done!
-* Get bug to appear - done!
-* Get bug to move - done!
-* Get player to appear
-* Get player to move
-*/
+ * Get game board to appear  - done!
+ * Get bug to appear - done!
+ * Get bug to move - done!
+ * Get player to appear - done!
+ * Get player to move - done!
+ * Prevent player from moving out of bounds - done!
+ * Reset enemies to simulate continuous stream of bugs
+ * Reset player position when colliding with bugs
+ * Add game title and instructions to screen.
+ * Add 'You won' / 'You Lose' confirmation
+ */
 
 // Enemies our player must avoid
+// Parameter: x, horizontal position of enemy in pixels
+// Parameter: y, vertical position of enemy in pixels
 var Enemy = function(x, y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-    this.x = x;
-    this.y = y;
+  // The image/sprite for our enemies,
+  // uses engine.js to load images
+  this.sprite = 'images/enemy-bug.png';
+  this.x = x;
+  this.y = y;
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-    this.x += Math.floor(Math.random() * 105) * dt; // Move enemy
+  this.x += Math.floor(Math.random() * 105) * dt; // Move enemy
 
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// Character played by user
+// Parameter: x, horizontal position of player in pixels
+// Parameter: y, vertical position of player in pixels
 var Player = function(x, y) {
-    // Variables applied to each of our instances go here
-    // The image/sprite for our player, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/char-princess-girl.png';
-    this.x = x;
-    this.y = y;
+  // The image/sprite for our player, this uses
+  // uses engine.js to load images
+  this.sprite = 'images/char-princess-girl.png';
+  this.x = x;
+  this.y = y;
 };
 
 
@@ -54,37 +54,39 @@ Player.prototype.update = function(dt) {
 
 };
 
+// Display character on the screen, required method for game
 Player.prototype.render = function() {
-   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Move player position based on key selected
 // and prevent player from moving out of bounds
+// Parameter: kcode, text equivalent of selected key
 Player.prototype.handleInput = function(kcode) {
   if (kcode == 'left') {
-        this.x = this.x - 85;
-        if(this.x < 30) {
-          this.x = 200;
-        }
-    } else if (kcode == 'up') {
-        this.y = this.y - 85;
-        if(this.y < 30) {
-          this.y = 400;
-        }
-    } else if (kcode == 'right') {
-        this.x = this.x + 85;
-        if(this.x > 400) {
-          this.x = 200;
-        }
-    } else if (kcode == 'down') {
-        this.y = this.y + 85;
-        if(this.y > 400) {
-          this.y = 400;
-        }
-   }
+    this.x = this.x - 85;
+    if (this.x < 30) {
+      this.x = 200;
+    }
+  } else if (kcode == 'up') {
+    this.y = this.y - 85;
+    if (this.y < 30) {
+      this.y = 400;
+    }
+  } else if (kcode == 'right') {
+    this.x = this.x + 85;
+    if (this.x > 400) {
+      this.x = 200;
+    }
+  } else if (kcode == 'down') {
+    this.y = this.y + 85;
+    if (this.y > 400) {
+      this.y = 400;
+    }
+  }
 };
 
-// Now instantiate your objects.
+// Instantiate enemy objects
 var mike = new Enemy(-150, 50);
 var alvin = new Enemy(-450, 100);
 var rhonda = new Enemy(-800, 150);
@@ -102,23 +104,25 @@ var cody = new Enemy(-200, 155);
 var george = new Enemy(-650, 220);
 
 
-// Place all enemy objects in an array called allEnemies
+// Store enemies in an array to easily call the render
+// and update methods for each enemy, required for game
 var allEnemies = [mike, alvin, rhonda, pat, charlie, sam,
-  richard, freddy, april, julie, amy, jen, carl, cody, george];
+  richard, freddy, april, julie, amy, jen, carl, cody, george
+];
 
-// Place the player object in a variable called player
+// Store user's Player object in variable, required for game
 var player = new Player(200, 400);
 
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// This listens for key presses and sends the keys to
+// Player.handleInput() method. Do not modify.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    };
+  var allowedKeys = {
+    37: 'left',
+    38: 'up',
+    39: 'right',
+    40: 'down'
+  };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+  player.handleInput(allowedKeys[e.keyCode]);
 });
