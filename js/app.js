@@ -93,8 +93,6 @@ Player.prototype.handleInput = function(kcode) {
   }
 };
 
-
-
 // Instantiate enemy objects
 var mike = new Enemy(-150, 50);
 var alvin = new Enemy(-450, 100);
@@ -123,15 +121,15 @@ var allEnemies = [mike, alvin, rhonda, pat, charlie, sam,
 var player = new Player(200, 400);
 
 
-// Check for collision
+// Check to see if player get 'bit' by bug
 function checkCollisions() {
   for (var enemy = 0; enemy < allEnemies.length; enemy++)
-
+    // Run the collision check against all enemies
     if (allEnemies[enemy].x < player.x + player.WIDTH &&
       allEnemies[enemy].x + allEnemies[enemy].WIDTH > player.x &&
       allEnemies[enemy].y < player.y + player.HEIGHT &&
       allEnemies[enemy].HEIGHT + allEnemies[enemy].y > player.y) {
-      // Collision detected! Reset player position to game start.
+      // Player was bit! Reset player position to game start.
       player.x = 200;
       player.y = 400;
     }

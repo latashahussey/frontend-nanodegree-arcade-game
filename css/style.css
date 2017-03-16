@@ -1,3 +1,18 @@
 body {
+    color: #4D4D4D;
     text-align: center;
+}
+
+h1 {
+  font-family: 'Freckle Face';
+  font-size: 60px;
+
+}
+
+h3 {
+  font-family: 'Questrial';
+}
+
+p {
+  font-family: 'Questrial';
 }
