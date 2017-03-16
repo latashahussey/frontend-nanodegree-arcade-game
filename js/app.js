@@ -115,8 +115,8 @@ function checkCollisions() {
     // Run the collision check against all enemies
     if (allEnemies[enemy].x < player.x + player.WIDTH - 10 &&
       allEnemies[enemy].x + allEnemies[enemy].WIDTH - 10 > player.x &&
-      allEnemies[enemy].y < player.y + player.HEIGHT - 10 &&
-      allEnemies[enemy].HEIGHT + allEnemies[enemy].y - 10 > player.y) {
+      allEnemies[enemy].y < player.y + player.HEIGHT - 20 &&
+      allEnemies[enemy].HEIGHT + allEnemies[enemy].y - 20 > player.y) {
       // Player was bit! Reset player position to game start.
       alert('Ouch! You got bit. YOU LOSE. Try again.')
       player.x = 200;
