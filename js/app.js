@@ -6,9 +6,10 @@
  * Get player to move - done!
  * Prevent player from moving out of bounds - done!
  * Reset enemies to simulate continuous stream of bugs - done!
- * Reset player position when colliding with bugs
- * Add game title and instructions to screen.
- * Add 'You won' / 'You Lose' confirmation
+ * Reset player position when colliding with bugs - done!
+ * Add game title and instructions to screen. - done!
+ * Add 'You won' / 'You Lose' confirmation - done!
+ * Modify README
  */
 
 // Enemies our player must avoid
@@ -52,7 +53,7 @@ var Player = function(x, y) {
   this.sprite = 'images/char-princess-girl.png';
   this.x = x;
   this.y = y;
-  this.HEIGHT = 83;
+  this.HEIGHT = 73;
   this.WIDTH = 60;
 };
 
@@ -63,6 +64,7 @@ Player.prototype.update = function(gameStatus) {
   if (this.x < 0) { // player is too far left
     this.x = 0;
   } else if (this.y < 60) { // player won
+    alert('Whoo Hoo! YOU WIN.')
     this.x = 200;
     this.y = 400;
   } else if (this.x > 400) { // player is too far right
@@ -125,11 +127,12 @@ var player = new Player(200, 400);
 function checkCollisions() {
   for (var enemy = 0; enemy < allEnemies.length; enemy++)
     // Run the collision check against all enemies
-    if (allEnemies[enemy].x < player.x + player.WIDTH &&
-      allEnemies[enemy].x + allEnemies[enemy].WIDTH > player.x &&
-      allEnemies[enemy].y < player.y + player.HEIGHT &&
-      allEnemies[enemy].HEIGHT + allEnemies[enemy].y > player.y) {
+    if (allEnemies[enemy].x < player.x + player.WIDTH - 10 &&
+      allEnemies[enemy].x + allEnemies[enemy].WIDTH - 10 > player.x &&
+      allEnemies[enemy].y < player.y + player.HEIGHT - 10 &&
+      allEnemies[enemy].HEIGHT + allEnemies[enemy].y - 10 > player.y) {
       // Player was bit! Reset player position to game start.
+      alert('Ouch! You got bit. YOU LOSE. Try again.')
       player.x = 200;
       player.y = 400;
     }
