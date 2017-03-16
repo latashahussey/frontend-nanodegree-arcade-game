@@ -1,6 +1,9 @@
-// Enemies our player must avoid
-// Parameter: x, horizontal position of enemy in pixels
-// Parameter: y, vertical position of enemy in pixels
+/**
+ * @description Represents enemies the player must avoid
+ * @constructor
+ * @param {integer} x - horizontal position of player in pixels
+ * @param {integer} y - vertical position of player in pixels
+ */
 var Enemy = function(x, y) {
 
   // The image/sprite for our enemies,
@@ -8,14 +11,18 @@ var Enemy = function(x, y) {
   this.sprite = 'images/enemy-bug.png';
   this.x = x;
   this.y = y;
+  // height and width of enemy
+  // required for checkCollisions function
   this.HEIGHT = 63;
   this.WIDTH = 92;
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+/**
+ * @description Updates the enemy's position, required method for game
+ * @param {integer} dt - a time delta between ticks*
+ */
 Enemy.prototype.update = function(dt) {
-  this.x += Math.floor(Math.random() * 215) * dt; // Move enemy
+  this.x += Math.floor(Math.random() * 215) * dt;
 
   // Reset enemy position and speed when it reaches end of canvas
   if (this.x > 505) {
@@ -25,27 +32,36 @@ Enemy.prototype.update = function(dt) {
 
 };
 
-// Draw the enemy on the screen, required method for game
+/**
+ * @description Draw the enemy on the screen, required method for game
+ */
 Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Character played by user
-// Parameter: x, horizontal position of player in pixels
-// Parameter: y, vertical position of player in pixels
+/**
+ * @description Represents a player
+ * @constructor
+ * @param {integer} x - horizontal position of player in pixels
+ * @param {integer} y - vertical position of player in pixels
+ */
 var Player = function(x, y) {
   // The image/sprite for our player, this uses
   // uses engine.js to load images
   this.sprite = 'images/char-princess-girl.png';
   this.x = x;
   this.y = y;
+  // height and width  of player's character
+  // required for checkCollisions function
   this.HEIGHT = 73;
   this.WIDTH = 60;
 };
 
-// Prevent user from moving out of bounds
-// or Reset player position after win/loss
-Player.prototype.update = function(gameStatus) {
+/**
+ * @description Prevents user from moving out of bounds and
+ *  resets player position after win or loss
+ */
+Player.prototype.update = function() {
 
   if (this.x < 0) { // player is too far left
     this.x = 0;
@@ -61,14 +77,18 @@ Player.prototype.update = function(gameStatus) {
 
 };
 
-// Display character on the screen, required method for game
+/**
+ * @description Displays character on the screen, required method for game
+ */
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Move player position based on key selected
-// and prevent player from moving out of bounds
-// Parameter: kcode, text equivalent of selected key
+
+/**
+ * @description Move player position based on key selected
+ * @param {String} kcode - text equivalent of selected key
+ */
 Player.prototype.handleInput = function(kcode) {
   if (kcode == 'left') {
     this.x = this.x - 85;
@@ -81,7 +101,7 @@ Player.prototype.handleInput = function(kcode) {
   }
 };
 
-// Instantiate enemy objects
+// Instantiate all the enemies - bwahahaha!
 var mike = new Enemy(-150, 50);
 var alvin = new Enemy(-450, 100);
 var rhonda = new Enemy(-800, 150);
@@ -109,7 +129,10 @@ var allEnemies = [mike, alvin, rhonda, pat, charlie, sam,
 var player = new Player(200, 400);
 
 
-// Check to see if player get 'bit' by bug
+/**
+ * @description Determines if player get 'bit' by bug
+ *
+ */
 function checkCollisions() {
   for (var enemy = 0; enemy < allEnemies.length; enemy++)
     // Run the collision check against all enemies
@@ -124,8 +147,11 @@ function checkCollisions() {
     }
 }
 
-// This listens for key presses and sends the keys to
-// Player.handleInput() method. Do not modify.
+/**
+ * @description Listens for key presses and sends the keys to
+ *   Player.handleInput() method. Do not modify.
+ * @param {integer} e - code of key pressed on keyboard
+ */
 document.addEventListener('keyup', function(e) {
   var allowedKeys = {
     37: 'left',
