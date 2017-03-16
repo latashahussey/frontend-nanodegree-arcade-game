@@ -3,7 +3,8 @@
 
 ## How to Start the Game
 
-Visit http://latashahussey.github.io/bug-bites to start the game.
+Visit https://latashahussey.github.io/frontend-nanodegree-arcade-game/
+ to start the game.
 
 
 ## How to Play
