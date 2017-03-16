@@ -1,17 +1,3 @@
-/**
- * Get game board to appear  - done!
- * Get bug to appear - done!
- * Get bug to move - done!
- * Get player to appear - done!
- * Get player to move - done!
- * Prevent player from moving out of bounds - done!
- * Reset enemies to simulate continuous stream of bugs - done!
- * Reset player position when colliding with bugs - done!
- * Add game title and instructions to screen. - done!
- * Add 'You won' / 'You Lose' confirmation - done!
- * Modify README
- */
-
 // Enemies our player must avoid
 // Parameter: x, horizontal position of enemy in pixels
 // Parameter: y, vertical position of enemy in pixels
