@@ -21,6 +21,8 @@ var Enemy = function(x, y) {
   this.sprite = 'images/enemy-bug.png';
   this.x = x;
   this.y = y;
+  this.HEIGHT = 63;
+  this.WIDTH = 92;
 };
 
 // Update the enemy's position, required method for game
@@ -50,23 +52,22 @@ var Player = function(x, y) {
   this.sprite = 'images/char-princess-girl.png';
   this.x = x;
   this.y = y;
+  this.HEIGHT = 83;
+  this.WIDTH = 60;
 };
 
 // Prevent user from moving out of bounds
 // or Reset player position after win/loss
 Player.prototype.update = function(gameStatus) {
 
-  if (this.x < 30) { // player is too far left
-    this.x = 200;
-    this.y = 400;
+  if (this.x < 0) { // player is too far left
+    this.x = 0;
   } else if (this.y < 60) { // player won
     this.x = 200;
     this.y = 400;
   } else if (this.x > 400) { // player is too far right
-    this.x = 200;
-    this.y = 400;
+    this.x = 400;
   } else if (this.y > 400) { // player is too far down
-    this.x = 200;
     this.y = 400;
   }
 
@@ -121,6 +122,20 @@ var allEnemies = [mike, alvin, rhonda, pat, charlie, sam,
 // Store user's Player object in variable, required for game
 var player = new Player(200, 400);
 
+
+// Check for collision
+function checkCollisions() {
+  for (var enemy = 0; enemy < allEnemies.length; enemy++)
+
+    if (allEnemies[enemy].x < player.x + player.WIDTH &&
+      allEnemies[enemy].x + allEnemies[enemy].WIDTH > player.x &&
+      allEnemies[enemy].y < player.y + player.HEIGHT &&
+      allEnemies[enemy].HEIGHT + allEnemies[enemy].y > player.y) {
+      // Collision detected! Reset player position to game start.
+      player.x = 200;
+      player.y = 400;
+    }
+}
 
 // This listens for key presses and sends the keys to
 // Player.handleInput() method. Do not modify.
